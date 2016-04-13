@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Untitled Document</title>
+
+<link href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" rel="stylesheet" type="text/css" />
+
+<script src="http://code.jquery.com/jquery-1.6.4.min.js" type="text/javascript"></script>
+
+<script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js" type="text/javascript"></script>
+
+
+
+</head>
+
+
+
+<body>
+
+<div data-role="search.html" id="pkt.html">
+
+<script>
+
+$( document ).ready(function() {
+
+
+
+  
+
+  
+
+  loadScript('http://maps.googleapis.com/maps/api/js?v=3&sensor=false&callback=initialize',
+
+             function(){/*log('')*/;});
+
+
+
+
+
+
+
+
+
+});
+
+
+
+    function loadScript(src,callback){
+
+  
+
+    var script = document.createElement("script");
+
+    script.type = "text/javascript";
+
+    if(callback)script.onload=callback;
+
+    document.getElementsByTagName("head")[0].appendChild(script);
+
+    script.src = src;
+
+  }
+
+
+
+function initialize() {
+
+    
+
+    //log('');
+
+    var mapOptions = {
+
+          zoom: 15,
+
+          center: new google.maps.LatLng(22.314552, 114.221424),
+
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+
+    };
+
+    map = new google.maps.Map(document.getElementById('map_canvas'),
+
+            mapOptions);
+
+  }
+
+
+
+function log(str){
+
+  document.getElementsByTagName('pre')[0].appendChild(document.createTextNode('['+new Date().getTime()+']\n'+str+'\n\n'));
+
+}
+
+</script>
+
+
+
+    <div data-role="header" data-theme="b">
+<a href="search.html" data-transition="fade" data-role="button" data-theme="a">Back</a>
+
+    <h1>Kwun Tong</h1>
+    <a href="pkt.html" data-transition="fade" data-role="button" data-theme="a">favorite</a>
+<a href="#page" data-role="button" data-icon="home" data-iconshadow="false"
+      
+        data-direction="reverse" onclick="empty()" data-transition="slide"
+        data-iconpos="notext"  class="ui-btn-right" data-theme="a">home</a>
+  </div>
+
+
+  <div data-role="content"></pre><div id="map_canvas" style="height:200px"></div><pre></pre></div>
+   <h1>Hong Kong Lutheran Social Service Evergreen Lutheran Centre</h1><br>
+   <h2>Telephone Number:2712 0097</h2><br>
+   <h2>Address:	2 Horse Shoe Lane, Kwun Tong, Kowloon</h2>
+
+  <div data-role="footer">
+
+    <h4></h4>
+
+  </div>
+
+</div>
+
+
+
+
+
+</body>
+
+</html>

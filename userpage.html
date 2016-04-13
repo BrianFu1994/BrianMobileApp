@@ -1,0 +1,322 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="width=device-width, minimum-scale=1, maximum-scale=1" name ="viewport">
+<title>jQuery Mobile Web App</title>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+
+<script>
+$(document).ready(function(e) {
+//alert("aaa");
+$("#logout").click(function(){
+//alert("The paragraph was clicked");
+logout();
+});
+});
+function logout()
+{
+    $.ajax({
+        type: 'GET',
+        url: 'Logout.php',
+        cache:false,
+        //async: false,
+        success: function(msg)
+        {
+            window.location.replace("index.html");
+            
+        }
+
+    })
+   
+}
+</script>
+
+<script>
+$(document).ready(function(e) {
+//alert("aaa");
+$("#submit03").click(function(){
+//alert("The paragraph was clicked");
+delac();
+});
+});
+
+function delac(){
+  
+    var URLs="delac.php";
+
+    var ac=$("#login03").val();
+    var pw=$("#password03").val();
+    var em=$("#email03").val();
+    var myData = 'login='+ ac + '&password='+pw +'&email='+em; //build a post data structure
+$.ajax({
+url: URLs,
+data: myData,
+type:"delete",
+dataType:'text',
+
+success: function(msg){
+	if(msg == 0){
+		alert("login fail");
+	}else{
+
+  alert("del succes");
+  	window.location.replace("index.html");
+	}
+},
+
+error:function(xhr, ajaxOptions, thrownError){
+	
+  alert(xhr.status);
+  alert(thrownError);
+}
+});
+
+}
+</script>
+
+</head> 
+<body>
+<form name="form1" method="post" action="">
+  <label for="login"></label>
+</form>
+
+<div data-role="page" id="page">
+	<div data-role="header" data-theme="b">
+		<h1>Drug</h1>
+        </div>
+	<div data-role="content">	
+		<ul data-role="listview">
+			<li><a href="#page1">Drug library </a></li>
+            <li><a href="#page3">Drug rehabilitation video</a></li>
+			<li><a href="search.html">Drug rehabilitation center</a></li>
+            <li><a href="fav.html">favourite list</a></li>
+            <li><a href="#page5">About Us</a></li>
+		</ul>		
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+	  
+	  <ul>
+	    <li><a href="#page9" data-transition="fade" data-icon="plus" data-theme="a">Delete ac</a></li>
+	    <li><a href="#page8" data-transition="fade" data-icon="plus" data-theme="a">Logout</a></li>
+      </ul>
+	</div>
+</div>
+	</div>
+	
+ 
+      
+
+    
+    
+    
+<div data-role="page" id="page8">
+	<div data-role="header" >
+    
+   
+ 
+       <a href="#page" data-transition="fade" data-role="button" data-theme="a">Back</a>
+		<h1>Logout</h1>
+        <div data-role="content">
+    </div>
+  </div>
+			
+	 
+	  
+          
+  <form name="form3" method="post" action="">
+  <p>
+		  <input type="button" name="Logout" id="logout" value="Logout">
+</p>
+	  </form>
+	   </div>
+  <div data-role="footer">
+		<h4>Page Footer</h4>
+	</div>
+    
+    <div data-role="page" id="page9">
+	<div data-role="header" >
+    
+   
+ 
+       <a href="#page" data-transition="fade" data-role="button" data-theme="a">Back</a>
+		<h1>Delete ac</h1>
+     <div data-role="content">
+    </div>
+    </div>
+    <p>Username</p>
+	
+	    <p>
+	      <label for="Login03"></label>
+	      <input type="text" name="Login" id="login03">
+        </p>
+	   
+        <p>Password</p>
+	    <p>
+	      <label for="password03"></label>
+	      <input type="password" name="password03" id="password02">
+	    </p>
+	    
+        <p>Email</p>
+	    <p>
+	      <label for="email03"></label>
+	      <input type="text" name="email03" id="email03">
+	    </p>
+        
+        <p>
+	      <input type="submit" name="submit03" id="submit03" value="Submit">
+	    </p>
+	   
+	  <p>&nbsp;</p>
+	</div>
+	<div data-role="footer">
+		<h4></h4>
+        
+	</div>
+   
+
+    
+    
+    
+<div data-role="page" id="page1">
+	<div data-role="header" data-theme="b">
+    <a href="#page" data-transition="fade" data-role="button" data-theme="a">Back</a>
+    
+    
+		<h1>Drug library</h1>
+        
+	</div>
+	
+     <div data-role="content">
+	  <p>1. heroin</p>
+	  <a href="#pageone" data-role="button">Enter</a>
+
+    
+
+   
+       <p>2.Cannabis</p>
+     <a href="#pagetwo" data-role="button">Enter</a>
+       <p>3.Cocaine</p>
+     <a href="#pagethree" data-role="button">Enter</a>
+     
+        
+  </div>
+  </div>
+	<div data-role="footer">
+		<h4></h4>
+	</div>
+    
+<div data-role="page" id="pageone">
+  <div data-role="header" data-theme="b">
+ <a href="#page1" data-transition="fade" data-role="button" data-theme="a">Back</a>
+    <h1>Drug library</h1>
+    <a href="#page" data-role="button" data-icon="home" data-iconshadow="false"
+      
+        data-direction="reverse" onclick="empty()" data-transition="slide"
+        data-iconpos="notext"  class="ui-btn-right" data-theme="a">home</a>
+  </div>
+<div data-role="content">
+    <h2>heroin</h2>
+    <img src="pic/heroin.jpg" alt="Mountain View" style="width:80px;height:70px;"><br>
+    Heroinis an opioid painkiller. Heroin is prescribed as an analgesic, and less commonly as a cough suppressant and as an antidiarrhoeal. It is also used as a recreational drug for its euphoric effects. Frequent and regular administration is associated with tolerance and physical dependence. In some countries it is available for prescription to long-term users as a form of opioid replacement therapy alongside counseling
+    <br>
+</div>    
+    <div data-role="footer">
+  <h1></h1>
+  </div>
+
+</div>
+<div data-role="page" id="pagetwo">
+  <div data-role="header" data-theme="b">
+  <a href="#page1" data-transition="fade" data-role="button" data-theme="a">Back</a>
+    <h1>Drug library</h1>
+    <a href="#page" data-role="button" data-icon="home" data-iconshadow="false"
+      
+        data-direction="reverse" onclick="empty()" data-transition="slide"
+        data-iconpos="notext"  class="ui-btn-right" data-theme="a">home</a>
+  </div>
+<div data-role="content">
+    <h2>Cannabis</h2>
+    <img src="pic/Cannabis.jpg" alt="Mountain View" style="width:80px;height:70px;"><br>
+    Cannabis, also known as marijuana and by numerous other names, is a preparation of the Cannabis plant intended for use as a psychoactive drug or medicine. The main psychoactive part of cannabis is tetrahydrocannabinol (THC); it is one of 483 known compounds in the plant,including at least 84 other cannabinoids, such as cannabidiol (CBD), cannabinol (CBN), and tetrahydrocannabivarin 
+    <br>
+    
+</div>
+
+  <div data-role="footer">
+  <h1></h1>
+  </div>
+</div>
+    <div data-role="page" id="pagethree">
+  <div data-role="header" data-theme="b">
+  <a href="#page1" data-transition="fade" data-role="button" data-theme="a">Back</a>
+    <h1>Drug library</h1>
+    
+       
+    <a href="#page" data-role="button" data-icon="home" data-iconshadow="false"
+      
+        data-direction="reverse" onclick="empty()" data-transition="slide"
+        data-iconpos="notext"  class="ui-btn-right" data-theme="a">home</a>
+ </div>
+<div data-role="content">
+    <h2>Cocaine</h2>
+    <img src="pic/Cocaine.jpg" alt="Mountain View" style="width:80px;height:70px;"><br>
+    Cocaine, also known as benzoylmethylecgonine or coke, is a strong stimulant mostly used as a recreational drug.It is commonly snorted, inhaled, or injected into the veins. Mental effects may include loss of contact with reality, an intense feeling of happiness, or agitation. Physical symptoms may include a fast heart rate, sweating, and large pupils. High doses can result in very high blood pressure or body temperature. Effects begin within seconds to minutes of use and last between five and ninety minutes. Cocaine has a small number of accepted medical uses such as numbing and decreasing bleeding during nasal surgery.
+    <br>
+    
+</div>
+
+  <div data-role="footer">
+  <h1></h1>
+  </div>
+</div>
+    
+
+<div data-role="page" id="page3">
+	<div data-role="header" data-theme="b">
+    <a href="#page" data-transition="fade" data-role="button" data-theme="a">Back</a>
+		<h1>Drug rehabilitation video</h1>
+      
+	
+	</div>
+	<div data-role="content">	
+	<iframe width="450" height="480" src="https://www.youtube.com/embed/Q7FcdQ3xT58" frameborder="0" allowfullscreen></iframe>
+    <h2>Hong Kong Tackles Ketamine Drug Epidemic</h2>
+    <iframe width="450" height="480" src="https://www.youtube.com/embed/kxCgGfCoJg8" frameborder="0" allowfullscreen></iframe>
+    <h2>"Drug Abuse II" A Short Dramatic Film II Hong Kong Series</h2>
+	</div>
+    </div>
+	<div data-role="footer">
+  <h1></h1>
+  </div>
+  
+
+
+
+
+
+
+<div data-role="page" id="page5">
+	<div data-role="header" data-theme="b">
+    <a href="#page" data-transition="fade" data-role="button" data-theme="a">Back</a>
+		<h1>About us</h1>
+ 
+	</div>
+	
+	<div data-role="content">	
+		<h1>No Drug Good Life</h1>
+        <h2>TEL : 24681012</h2>
+      </div>  	
+	</div>
+	<div data-role="footer">
+		<h4></h4>
+	</div>>
+
+</body>
+</html>
+
