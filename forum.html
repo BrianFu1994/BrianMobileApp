@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="width=device-width, minimum-scale=1, maximum-scale=1" name ="viewport">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+
+<div data-role="page" id="forum.html">
+<script>
+$(document).ready(function() {
+	var myData = "name_php= &user_comments=";
+	$.ajax({
+		url: "forum.php?type=read",
+		data: myData,
+		type:"POST"
+		,
+		
+		success: function(msg){
+			alert(msg);
+			var data = JSON.parse(msg);
+			//alert(JSON.stringif(data));
+			$.each(data, function(key, val) {
+				$("#messages").append("<p>"+val.name+ ":" +" " + val.comment+"</p>");
+			});
+		}
+	});
+	
+	
+	$("#submit").click (function(){
+		var URLs="forum.php?type=submit";
+		var name=$("#login").val();
+		var comments =$("#textarea").val();
+		var myData = "name_php=" + name + "&user_comments="+comments;
+		//alert(myData);
+		
+		$.ajax({
+		url: URLs,
+		data: myData,
+		type:"POST"
+		,
+		
+		success: function(msg){
+			var data = jQuery.parseJSON(msg);
+			if(data.result == true){
+			//$.each(data, function(key, val) {
+				//$("#messages").html("");
+				$("#messages").append("<p>"+name+ ":" +" " + comments+"</p>");
+				//alert(data);
+			//});
+			}
+		
+		},
+		
+		error:function(xhr, ajaxOptions, thrownError){
+		alert(xhr.status);
+		alert(thrownError);
+		}
+		});
+		});
+	});
+</script>
+ 
+<style>
+ .ui-icon-setting {
+                background: url(setting.png) 50% 50% no-repeat;
+                background-size: 20px 20px;
+                width: 20px;
+                height: 20px;
+                box-shadow: none;
+                -webkit-box-shadow: none;
+                margin: 2 !important;
+            }
+			
+			.ui-icon-logout {
+                background: url(logout.png) 50% 50% no-repeat;
+                background-size: 20px 20px;
+                width: 20px;
+                height: 20px;
+                box-shadow: none;
+                -webkit-box-shadow: none;
+                margin: 2 !important;
+            }
+			</style>
+
+	<div data-role="header" data-theme="b">
+    
+   <a href="#page" data-transition="fade" data-role="button" data-theme="a">Back</a>
+    
+		<h1>Forum</h1>
+	</div>
+    
+    <div align="center"><ul id="messages"></ul></div>
+    
+	<div data-role="content">
+     
+  <p>Name:</p>
+	
+	    <p>
+	      <label for="Login"></label>
+	      <input type="text" name="Login" id="login">
+        </p>
+     
+        <p>Comments:</p>
+	
+	    <p>
+	      <label for="comments"></label>
+	      <textarea rows="4" cols="50" id="textarea"></textarea>
+        </p>
+        
+	    <p>
+	      <input type="submit" name="Submit" id="submit" value="Submit">
+	    </p>
+	  </form>
+      
+      <div id="loadpost"></div>
+    
+  
+  </div>
+    	
+	<div data-role="footer" data-position="fixed" data-theme="e">
+	<div data-role="navbar">
+	
+	</div>
+</div>
+
+</body>
+</html>
